@@ -12,12 +12,17 @@ public :
    bool OnCreate();
    void Draw(SDL_Renderer* render_); 
 
-   void HandelEvent(SDL_Event event); 
+   void HandelEvent(SDL_Event event_); 
+  
 private:
 	int x, y , w, h ;  
-	std::vector <SDL_Rect> box_X;
-	std::vector <SDL_Rect> box_Y; 
+
+	int mouse_x, mouse_y; 
+	bool isClick[35];   
+
+	std::vector <SDL_Rect> box;
 	SDL_Renderer* render; 
+	SDL_Window* window;  
 };
 
 #endif //  AI_H

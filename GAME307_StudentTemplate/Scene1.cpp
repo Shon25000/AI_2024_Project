@@ -74,14 +74,13 @@ void Scene1::Render() {
 	ai.Draw(renderer); 
 	// render the player
 	
-
 	SDL_RenderPresent(renderer);
 }
 
 void Scene1::HandleEvents(const SDL_Event& event)
 {
 	// send events to npc's as needed
-
+	ai.HandelEvent(event); 
 	// send events to player as needed
 	game->getPlayer()->HandleEvents(event);
 }
