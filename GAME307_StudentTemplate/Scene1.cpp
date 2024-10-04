@@ -7,7 +7,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	renderer = SDL_GetRenderer(window);
 	xAxis = 25.0f;
 	yAxis = 15.0f;
-	
+	  /*ai = new AI();*/
 	// create a NPC
 	blinky = nullptr;
 }
@@ -60,9 +60,17 @@ void Scene1::OnDestroy()
 void Scene1::Update(const float deltaTime) {
 	// Calculate and apply any steering for npc's
 	//blinky->Update(deltaTime);
-	
+	SteeringOutput* steering; 
+	steering = NULL; 
 	// Update player
-	game->getPlayer()->Update(deltaTime);
+	ai.Update(deltaTime); 
+	//SteeringBehaviour* steeringAlqorthim = new Seek(body, body->);   
+	//if (VMath::distance(ai->getPlayer().getPos(), body->getPos()) > 5.0f) {  
+	//	steering = steeringAlqorthim->getSteering(); 
+
+	//	body->Update(deltaTime, steering); 
+	//}
+	//game->getPlayer()->Update(deltaTime);
 }
 
 void Scene1::Render() {

@@ -5,6 +5,7 @@
 #include <VMath.h>
 #include "Scene.h"
 #include "Character.h"
+#include"KinematicBody.h"
 #include"AI.h"  
 
 using namespace MATH;
@@ -16,9 +17,9 @@ private:
 	SDL_Renderer* renderer;
 	Matrix4 projectionMatrix;
     Matrix4     inverseProjection;
-
-	Character* blinky;
-	AI ai; 
+	class KinematicBody* body; 
+	Character* blinky; 
+	AI ai;   
 public:
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
 	~Scene1();

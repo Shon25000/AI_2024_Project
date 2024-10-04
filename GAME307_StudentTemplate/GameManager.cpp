@@ -70,6 +70,8 @@ bool GameManager::OnCreate() {
         maxAngular,
         this
     );
+
+   
     if ( player->OnCreate() == false ) {
         OnDestroy();
         return false;

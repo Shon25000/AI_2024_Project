@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PlayerBody.cpp" />
+    <ClCompile Include="Scene1.cpp" />
+    <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="Steering\KinematicBody.cpp" />
+    <ClCompile Include="Steering\SteeringOutput.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Kinematic.cpp">
+      <Filter>AI.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering.cpp">
+      <Filter>AI.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>AI.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SeekAlgorithm.cpp">
+      <Filter>AI.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicSteering.cpp">
+      <Filter>AI.cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="PlayerBody.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene1.h" />
+    <ClInclude Include="Seek.h" />
+    <ClInclude Include="Steering\KinematicBody.h" />
+    <ClInclude Include="Steering\SteeringOutput.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="Kinematic.h">
+      <Filter>AI.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering.h">
+      <Filter>AI.h</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>AI.h</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekAlgorithm.h">
+      <Filter>AI.h</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicSteering.h">
+      <Filter>AI.h</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GAME307_StudentTemplate.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="AI.h">
+      <UniqueIdentifier>{a10a43fd-fdfb-4c36-9a60-15e64651929e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI.cpp">
+      <UniqueIdentifier>{26d02c77-b7b7-48b4-81f2-fb1e0ed089d1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

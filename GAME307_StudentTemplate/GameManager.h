@@ -7,7 +7,6 @@
 #include "Scene.h"
 #include "PlayerBody.h"
 
-
 class GameManager {
 private:
 	/// These are called "forward declarations" The idea is that a pointer is 
@@ -26,7 +25,6 @@ private:
     class PlayerBody *player;
     Uint32 changeSceneEventType; // event type number for user defined events
     bool launched = true;
-
 	void LoadScene(int i);
 	bool ValidateCurrentScene();
 
@@ -39,6 +37,8 @@ public:
 	float getSceneWidth() const;
 	Matrix4 getProjectionMatrix() const;
     PlayerBody* getPlayer() const { return player; }
+	
+
 	Uint32 getChangeScene() const { return changeSceneEventType; }
 
 	SDL_Renderer* getRenderer();

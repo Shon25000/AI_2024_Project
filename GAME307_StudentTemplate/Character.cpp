@@ -80,8 +80,29 @@ void Character::Update(float deltaTime)
 
 	// using the target, calculate and set values in the overall steering output
 
+
+	// set the target for steering; target is used by the steerTo... functions
+	// (often the target is the Player)
+
+	// using the target, calculate and set values in the overall steering output
+	//SteeringBehaviour* steeringAlqorthim = new Seek(body, scene->game->getPlayer());  
+	//if (VMath::distance(scene->game->getPlayer()->getPos(), body->getPos()) > 5.0f) {
+	//	steering = steeringAlqorthim->getSteering();
+
+	//	body->Update(deltaTime, steering);
+	//}
+
 	// apply the steering to the equations of motion
-	body->Update(deltaTime, steering);
+
+
+
+	// clean up memory
+	// (delete only those objects created in this function)
+
+	/*if (steeringAlqorthim) {
+		delete steeringAlqorthim;
+	}*/
+		body->Update(deltaTime, steering);
 
 	// clean up memory
 	// (delete only those objects created in this function)
