@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "Body.h"
 #include "GameManager.h"
- 
+
 class PlayerBody : public Body
 {
 protected:
@@ -35,7 +35,7 @@ public:
         float maxAcceleration_,
         float maxRotation_,
         float maxAngular_,
-        GameManager *game_
+        GameManager* game_
     ) : Body{
           pos_
         , vel_
@@ -52,26 +52,26 @@ public:
     }
         , game{ game_ }
     {}
-    
+
     // use the base class versions of getters
 
     bool OnCreate();
     void OnDestroy();
-    void Render( float scale = 1.0f ) const;
-    void HandleEvents( const SDL_Event& event );
-    void Update( float deltaTime );
+    void Render(float scale = 1.0f) const;
+    void HandleEvents(const SDL_Event& event);
+    void Update(float deltaTime);
     void resetToOrigin();
     void setImage(SDL_Surface* image_)
     {
         if (image) SDL_FreeSurface(image);
-        image = image_; 
+        image = image_;
     }
-    void setTexture( SDL_Texture* texture_ )
+    void setTexture(SDL_Texture* texture_)
     {
         if (texture) SDL_DestroyTexture(texture);
-        texture = texture_; 
+        texture = texture_;
     }
-    
+
 };
 
 #endif /* PLAYERBODY_H */

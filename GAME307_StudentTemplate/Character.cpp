@@ -1,4 +1,5 @@
 #include "Character.h"
+#include"Flee.h"
 
 bool Character::OnCreate(Scene* scene_)
 {
@@ -58,7 +59,7 @@ bool Character::setTextureWith(string file)
 	SDL_Window* window = scene->getWindow();
 	SDL_Renderer* renderer = SDL_GetRenderer(window);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
-	if (!texture) 
+	if (!texture)
 	{
 		std::cerr << "Can't create texture" << std::endl;
 		return false;
@@ -73,24 +74,45 @@ void Character::Update(float deltaTime)
 {
 	// create a new overall steering output
 	SteeringOutput* steering;
-	steering = NULL;
 
+	steering = new SteeringOutput();
+
+	steerToSeekPlayer(steering);
+
+	body->Update(deltaTime, steering);
+
+
+	if (steering) {
+		delete steering;
+	}
+
+}
+
+void Character::steerToSeekPlayer(SteeringOutput* steering)
+{
 	// set the target for steering; target is used by the steerTo... functions
 	// (often the target is the Player)
 
 	// using the target, calculate and set values in the overall steering output
 
+	/*SteeringBehaviour* fleeAlqorthim = new Flee(body, scene->game->getPlayer());
+	if (VMath::distance(scene->game->getPlayer()->getPos() , body->getPos()) < 5.0f) {
+		*steering += *(fleeAlqorthim->getSteering());
 
-	// set the target for steering; target is used by the steerTo... functions
-	// (often the target is the Player)
+		body->Update(deltaTime, steering);
+	}*/
 
-	// using the target, calculate and set values in the overall steering output
-	//SteeringBehaviour* steeringAlqorthim = new Seek(body, scene->game->getPlayer());  
-	//if (VMath::distance(scene->game->getPlayer()->getPos(), body->getPos()) > 5.0f) {
-	//	steering = steeringAlqorthim->getSteering();
+	SteeringBehaviour* seekAlqorthim = new Seek(body, scene->game->getPlayer());
+	*steering += *(seekAlqorthim->getSteering());
 
-	//	body->Update(deltaTime, steering);
-	//}
+	//TODO: error handling of the new fails 
+
+	/*SteeringBehaviour* steeringAlqorthim = new Seek(body,scene->game->getPlayer());
+	if (VMath::distance(scene->game->getPlayer()->getPos() , body->getPos()) > 5.0f) {
+		steering = steeringAlqorthim->getSteering();
+
+		body->Update(deltaTime, steering);
+	}*/
 
 	// apply the steering to the equations of motion
 
@@ -99,13 +121,10 @@ void Character::Update(float deltaTime)
 	// clean up memory
 	// (delete only those objects created in this function)
 
-	/*if (steeringAlqorthim) {
-		delete steeringAlqorthim;
-	}*/
-		body->Update(deltaTime, steering);
+	if (seekAlqorthim) {
+		delete seekAlqorthim;
+	}
 
-	// clean up memory
-	// (delete only those objects created in this function)
 }
 
 void Character::HandleEvents(const SDL_Event& event)

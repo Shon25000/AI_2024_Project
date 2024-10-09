@@ -30,8 +30,7 @@ bool AI::OnCreate()
 {
 
 
-	steering = new Steering();
-
+	
 	//-------------------------------
 	/// Boxes setup 
 	int Rows = 6;
@@ -52,17 +51,6 @@ bool AI::OnCreate()
 		}
 	}
 
-	randomAI.x = AiX;
-	randomAI.y = AiY;
-	randomAI.w = AiW;
-	randomAI.h = AiH;
-
-	for (int i = 0; i < box.size();i++) {
-		if (checkCollision(randomAI, box[i])) {
-
-			std::cout << "Hit\n";
-		}
-	}
 	
 	return true;
 }
@@ -73,7 +61,6 @@ void AI::OnDestroy()
 
 	//delete body;
 
-	delete& randomAI;
 	delete& box;
 }
 
@@ -99,9 +86,7 @@ void AI::Draw(SDL_Renderer* renderer_)
 
 	SDL_SetRenderDrawColor(renderer_, 255, 0, 0, 255);
 
-	SDL_RenderDrawRect(renderer_, &randomAI);
 
-	SDL_RenderFillRect(renderer_, &randomAI);
 
 }
 
@@ -135,18 +120,7 @@ void AI::Update(float deltaTime)
 	/*randomAI.x += (speed * 5.0f);   
 	randomAI.y += (speed * 5.0f);   */
 
-	PhysicsEquation(deltaTime,Vec3(randomAI.x, randomAI.y, 0.0f)); 
-	randomAI.x += vel.x;  
-	randomAI.y += vel.y;   
 
-	for (int i = 0; i < box.size();i++) { 
-		if (checkCollision(randomAI, box[i])) {  
-			std::cout << "Collision detected with box " << i << "\n"; 
-			result.Update(steering, deltaTime);
-			
-
-		} 
-	}
 }
 
 bool AI::checkCollision(SDL_Rect rect1, SDL_Rect rect2)
@@ -163,14 +137,6 @@ bool AI::checkCollision(SDL_Rect rect1, SDL_Rect rect2)
 	return true;
 }
 
-Vec3 AI::getRandomAIPos()
-{
-
-	
-	return Vec3(randomAI.x, randomAI.y, 0.0f);  
-	 
-
-}
 
 std::vector<Vec3> AI::getBoxesPos()
 {
@@ -181,39 +147,4 @@ std::vector<Vec3> AI::getBoxesPos()
 	return positions;
 }
 
-Kinematic AI::getSteering()
-{
-	for (int i = 0; i < box.size(); i++) {
-	result.velocity = Vec3(randomAI.x, randomAI.y, 0.0f) - Vec3(box[i].x, box[i].y,0.0f);
-}
-	VMath::normalize(result.velocity); 
 
-	result.velocity *= maxSpeed; 
-	result.rotation = 1.0f; 
-	return result;
-}
-
-void AI::PhysicsEquation(float deltaTime, Vec3 initialPos) 
-{
-	// Use initial position from the caller
-	pos = initialPos; 
-
-	// Update position based on velocity and acceleration
-	pos = pos + vel * deltaTime + accel * (0.5f * deltaTime * deltaTime); 
-	vel = vel + accel * deltaTime;
-
-	// Clip to maxSpeed, if needed
-	if (VMath::mag(vel) > maxSpeed) { 
-		vel = VMath::normalize(vel) * maxSpeed; 
-	}
-
-	// Update orientation and apply maxRotation constraints
-	orientation += rotation * deltaTime; 
-	rotation += angular * deltaTime; 
-	if (rotation > maxRotation) rotation = maxRotation; 
-
-	// Print debugging info to ensure proper movement
-	std::cout << "New position: (" << pos.x << ", " << pos.y << ")\n"; 
-	std::cout << "Velocity: (" << vel.x << ", " << vel.y << ")\n"; 
-
-}
