@@ -101,9 +101,12 @@ void Character::steerToSeekPlayer(SteeringOutput* steering)
 
 		body->Update(deltaTime, steering);
 	}*/
-
+	for (int i = 0; i < 5; i++) {
 	SteeringBehaviour* seekAlqorthim = new Seek(body, scene->game->getPlayer());
 	*steering += *(seekAlqorthim->getSteering());
+
+
+}
 
 	//TODO: error handling of the new fails 
 
@@ -121,9 +124,9 @@ void Character::steerToSeekPlayer(SteeringOutput* steering)
 	// clean up memory
 	// (delete only those objects created in this function)
 
-	if (seekAlqorthim) {
+	/*if (seekAlqorthim) {
 		delete seekAlqorthim;
-	}
+	}*/
 
 }
 
@@ -137,23 +140,35 @@ void Character::render(float scale) const
 	SDL_Renderer* renderer = scene->game->getRenderer();
 	Matrix4 projectionMatrix = scene->getProjectionMatrix();
 
-	SDL_Rect square;
+	std::vector<SDL_Rect> square;
 	Vec3 screenCoords;
 	int    w, h;
 
 	// notice use of "body" in the following
 	SDL_QueryTexture(body->getTexture(), nullptr, nullptr, &w, &h);
+
+
 	w = static_cast<int>(w * scale);
 	h = static_cast<int>(h * scale);
-	screenCoords = projectionMatrix * body->getPos();
-	square.x = static_cast<int>(screenCoords.x - 0.5f * w);
-	square.y = static_cast<int>(screenCoords.y - 0.5f * h);
-	square.w = w;
-	square.h = h;
+	square.resize(5);
+	for (int i = 0; i < square.size(); i++) {
+		screenCoords = projectionMatrix * body->getPos();
+		square[0].x = static_cast<int>(screenCoords.x - 0.5f * w); 
+		square[0].y = static_cast<int>(screenCoords.y - 0.5f * h);
+		square[1].x = static_cast<int>( 0.5f * w);  
+		square[1].y = static_cast<int>( 0.5f * h); 
+		square[i].w = w;
+		square[i].h = h;
 
-	// Convert character orientation from radians to degrees.
-	float orientation = body->getOrientation() * 180.0f / M_PI;
+		// Convert character orientation from radians to degrees.
+		float orientation = body->getOrientation() * 180.0f / M_PI;
 
-	SDL_RenderCopyEx(renderer, body->getTexture(), nullptr, &square,
-		orientation, nullptr, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(renderer, body->getTexture(), nullptr, &square[i],
+			orientation, nullptr, SDL_FLIP_NONE);
+
+		SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);  
+		
+SDL_RenderDrawRect(renderer, &square[i]); 
+
+	}
 }

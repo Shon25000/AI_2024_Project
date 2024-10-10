@@ -116,7 +116,7 @@ void AI::Update(float deltaTime)
 
 	static float speed = 1.0;     
 	speed += deltaTime;    
-	
+
 	/*randomAI.x += (speed * 5.0f);   
 	randomAI.y += (speed * 5.0f);   */
 

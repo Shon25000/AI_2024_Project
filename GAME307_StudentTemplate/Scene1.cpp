@@ -9,7 +9,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_) {
 	yAxis = 15.0f;
 	ai = new AI();
 	// create a NPC
-	blinky = nullptr;
+	/*blinky = nullptr;*/
 }
 
 Scene1::~Scene1() {}
@@ -37,12 +37,15 @@ bool Scene1::OnCreate() {
 
 	// Set up characters, choose good values for the constructor
 	// or use the defaults, like this
-	blinky = new Character();
-	if (!blinky->OnCreate(this) || !blinky->setTextureWith("Blinky.png"))
-	{
-		return false;
-	}
 
+	blinky.resize(5); 
+	for (int i = 0; i < blinky.size(); i++) { 
+		blinky[i] = new Character(); 
+		if (!blinky[i]->OnCreate(this) || !blinky[i]->setTextureWith("Blinky.png"))  
+		{ 
+			return false;
+		}
+	}
 	// end of character set ups
 
 	return true;
@@ -50,17 +53,18 @@ bool Scene1::OnCreate() {
 
 void Scene1::OnDestroy()
 {
-	if (blinky)
+	/*if (blinky)
 	{
 		blinky->OnDestroy();
 		delete blinky;
-	}
+	}*/
 }
 
 void Scene1::Update(const float deltaTime) {
 	// Calculate and apply any steering for npc's
-	blinky->Update(deltaTime);
-
+	for (int i = 0; i < blinky.size(); i++) {
+		blinky[i]->Update(deltaTime); 
+	}
 
 	ai->Update(deltaTime);
 	// Update player
@@ -75,8 +79,9 @@ void Scene1::Render() {
 	SDL_RenderClear(renderer);
 
 	// render any npc's
-	blinky->render(0.15f);
-
+	for (int i = 0; i < blinky.size(); i++) {
+		blinky[i]->render(0.15f); 
+	}
 	// render the player
 	game->RenderPlayer(0.10f);
 	ai->Draw(renderer); 

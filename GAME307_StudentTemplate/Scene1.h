@@ -6,7 +6,7 @@
 #include "Scene.h"
 #include "Character.h"
 #include"AI.h"
-
+#include "KinematicBody.h" 
 using namespace MATH;
 class Scene1 : public Scene {
 private:
@@ -16,8 +16,9 @@ private:
 	SDL_Renderer* renderer;
 	Matrix4 projectionMatrix;
 	Matrix4     inverseProjection;
+	class KinematicBody* body; 
 	AI* ai;  
-	Character* blinky;
+	std::vector<Character*> blinky; 
 
 public:
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
