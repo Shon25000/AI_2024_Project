@@ -146,6 +146,7 @@
     <ClCompile Include="Steering\KinematicBody.cpp" />
     <ClCompile Include="Steering\SteeringOutput.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Wander.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="Steering\KinematicBody.h" />
     <ClInclude Include="Steering\SteeringOutput.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Wander.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
