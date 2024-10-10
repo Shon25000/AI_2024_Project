@@ -25,6 +25,8 @@ public:
 		return *this;
 	}
 
+	
+
 
 	// This class does not have any behaviours, just constructors!
 

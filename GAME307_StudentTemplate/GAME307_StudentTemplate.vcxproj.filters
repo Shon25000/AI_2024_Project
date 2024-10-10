@@ -12,21 +12,12 @@
     <ClCompile Include="Steering\SteeringOutput.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
-    <ClCompile Include="Kinematic.cpp">
-      <Filter>AI.cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Steering.cpp">
-      <Filter>AI.cpp</Filter>
-    </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>AI.cpp</Filter>
     </ClCompile>
-    <ClCompile Include="SeekAlgorithm.cpp">
-      <Filter>AI.cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="KinematicSteering.cpp">
-      <Filter>AI.cpp</Filter>
-    </ClCompile>
+    <ClCompile Include="Flee.cpp" />
+    <ClCompile Include="SteeringBehaviour.cpp" />
+    <ClCompile Include="Arrive.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -41,21 +32,12 @@
     <ClInclude Include="Steering\SteeringOutput.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />
-    <ClInclude Include="Kinematic.h">
-      <Filter>AI.h</Filter>
-    </ClInclude>
-    <ClInclude Include="Steering.h">
-      <Filter>AI.h</Filter>
-    </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>AI.h</Filter>
     </ClInclude>
-    <ClInclude Include="SeekAlgorithm.h">
-      <Filter>AI.h</Filter>
-    </ClInclude>
-    <ClInclude Include="KinematicSteering.h">
-      <Filter>AI.h</Filter>
-    </ClInclude>
+    <ClInclude Include="Flee.h" />
+    <ClInclude Include="SteeringBehaviour.h" />
+    <ClInclude Include="Arrive.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GAME307_StudentTemplate.rc" />

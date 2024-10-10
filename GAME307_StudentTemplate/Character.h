@@ -7,7 +7,7 @@
 #include "KinematicBody.h"
 
 #include"Seek.h"
-
+#include"Arrive.h"
 using namespace std;
 
 class Character
@@ -18,6 +18,7 @@ private:
 
 	void steerToSeekPlayer(SteeringOutput* steering);
 
+	void ArrivePlayer(SteeringOutput* steering);   
 public:
 	Character()
 	{

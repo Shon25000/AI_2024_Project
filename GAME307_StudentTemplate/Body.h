@@ -53,6 +53,7 @@ public:
     virtual float getRotation() const { return rotation; }
     virtual float getAngular() const { return angular; }
     virtual float getMaxSpeed() const { return maxSpeed; }
+    virtual float getRadius() const { return radius; }
     virtual float getMaxAcceleration() const { return maxAcceleration; }
     virtual float getMaxRotation() const { return maxRotation; }
     virtual float getMaxAngular() const { return maxAngular; }
