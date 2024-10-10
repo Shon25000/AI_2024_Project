@@ -13,7 +13,7 @@ using namespace std;
 class Character
 {
 private:
-	class KinematicBody* body;
+	class std::vector<KinematicBody*> body;  
 	class Scene* scene;
 
 	void steerToSeekPlayer(SteeringOutput* steering);
@@ -21,8 +21,11 @@ private:
 public:
 	Character()
 	{
-		body = NULL;
-		scene = NULL;
+		for (size_t i = 0; i < body.size();i++) {
+			body[i] = NULL;
+
+			scene = NULL;
+		}
 	};
 
 	~Character() {};

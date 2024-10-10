@@ -39,12 +39,12 @@ bool Scene1::OnCreate() {
 	// or use the defaults, like this
 
 	blinky.resize(5); 
-	for (int i = 0; i < blinky.size(); i++) { 
-		blinky[i] = new Character(); 
-		if (!blinky[i]->OnCreate(this) || !blinky[i]->setTextureWith("Blinky.png"))  
-		{ 
+	for (int i = 0; i < blinky.size(); i++) {
+		blinky[i] = new Character();
+		if (!blinky[i]->OnCreate(this)) {
 			return false;
 		}
+		blinky[i]->setTextureWith("Blinky.png");// Assume you've modified setTexture to accept an SDL_Texture*
 	}
 	// end of character set ups
 
