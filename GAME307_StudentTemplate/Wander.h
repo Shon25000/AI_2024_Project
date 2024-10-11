@@ -6,6 +6,7 @@
 
 class Wander :
     public SteeringBehaviour
+
 {
 private:
 
