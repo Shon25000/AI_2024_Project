@@ -6,7 +6,7 @@ Arrive::Arrive(const Body* npc_, const Body* target_)
     npc = npc_; 
     target = target_;
 
-    timeToTarget = 1.0f;
+    timeToTarget = 5.0f;
 }
 
 SteeringOutput* Arrive::getSteering()
@@ -24,8 +24,8 @@ SteeringOutput* Arrive::getSteering()
     if (VMath::mag(result->linear) > npc->getMaxSpeed()) { 
         result->linear = VMath::normalize(result->linear) * npc->getMaxSpeed(); 
     } 
-    
-     MMath::rotate(npc->getOrientation(), result->linear);
+    float get = npc->getOrientation(); 
+    get = *(MMath::rotate(npc->getOrientation(), result->linear));
     
     result->angular = 0.0f;
 
