@@ -1,5 +1,6 @@
 #include "Character.h"
 #include"Flee.h"
+#include "Wander.h"
 
 bool Character::OnCreate(Scene* scene_)
 {
@@ -187,19 +188,30 @@ void Character::steerToSeekPlayer(SteeringOutput* steering)
 	
 	for (size_t i = 0; i < body.size(); i++) {
 
+		//FLEEING _______________________________________________________________________________
 		SteeringBehaviour* seekAlgorithm = new Flee(body[i], scene->game->getPlayer());
 		if (VMath::distance(scene->game->getPlayer()->getPos(), body[i]->getPos()) < 5.0f) {
 			*steering += *(seekAlgorithm->getSteering());
 
 
 		}
-			SteeringBehaviour* fleeAlgorthim = new	Seek(body[i], scene->game->getPlayer());
+		//____________________________________________________________________________________
+
+		 //SEEKING ____________________________________________________________________
+			/*SteeringBehaviour* fleeAlgorthim = new Seek(body[i], scene->game->getPlayer());
 		 if (VMath::distance(scene->game->getPlayer()->getPos(), body[i]->getPos()) > 5.0f) {
 
 			 *steering += *(fleeAlgorthim->getSteering());
-			}
+			}*/
+		//__________________________________________________________________________________
+			
+		//WANDER________________________________________________________________________________
+		SteeringBehaviour* WanderAlgorthim = new Wander(body[i]);
+		if (VMath::distance(scene->game->getPlayer()->getPos(), body[i]->getPos()) > 5.0f) {
 
-		
+			*steering += *(WanderAlgorthim->getSteering());
+		}
+		//___________________________________________________________________________________________
 	}
 
 
