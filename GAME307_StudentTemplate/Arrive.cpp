@@ -6,7 +6,7 @@ Arrive::Arrive(const Body* npc_, const Body* target_)
     npc = npc_; 
     target = target_;
 
-    timeToTarget = 1.0f;
+    timeToTarget = 5.0f;
 }
 
 SteeringOutput* Arrive::getSteering()
