@@ -24,7 +24,7 @@ public:
 		angular += v.angular;
 		return *this;
 	}
-
+	
 
 	// This class does not have any behaviours, just constructors!
 
