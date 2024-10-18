@@ -14,7 +14,7 @@ bool Character::OnCreate(Scene* scene_)
 			float orientation = 0.0f;
 			float rotation = 0.0f;
 			float angular = 0.0f;
-			float maxSpeed = 5.0f;
+			float maxSpeed = 4.4f;
 			float maxAcceleration = 10.0f;
 			float maxRotation = 2.0f;
 			float maxAngular = 10.0f;
@@ -173,8 +173,8 @@ void Character::Update(float deltaTime)
 
 		// Create a new steering output for each body
 		SteeringOutput* steering = new SteeringOutput();
-		ArrivePlayer(steering);   // Pass the index to steerToSeekPlayer for specific body[i]
-		steerToSeekPlayer(steering); 
+		 ArrivePlayer(steering);   // Pass the index to steerToSeekPlayer for specific body[i]
+		steerToSeekPlayer(steering);   
 		body[i]->Update(deltaTime, steering);
 
 		// Clean up memory
@@ -221,10 +221,7 @@ void Character::ArrivePlayer(SteeringOutput* steering)
 {
 	for (size_t i = 0; i < body.size(); i++) {
 		SteeringBehaviour* arrive = new Arrive(body[i], scene->game->getPlayer());
-		if (VMath::distance(scene->game->getPlayer()->getPos(), body[i]->getPos()) < 5.0f) {
 			*steering += *(arrive->getSteering()); 
-
-		}
 	}
 
 }
