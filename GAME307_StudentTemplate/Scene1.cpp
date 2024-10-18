@@ -38,14 +38,14 @@ bool Scene1::OnCreate() {
 	// Set up characters, choose good values for the constructor
 	// or use the defaults, like this
 
-	blinky.resize(5); 
-	for (int i = 0; i < blinky.size(); i++) {
-		blinky[i] = new Character();
-		if (!blinky[i]->OnCreate(this)) {
+	 
+	
+		blinky = new Character();
+		if (!blinky->OnCreate(this)) {
 			return false;
 		}
-		blinky[i]->setTextureWith("Blinky.png");// Assume you've modified setTexture to accept an SDL_Texture*
-	}
+		blinky->setTextureWith("Blinky.png");// Assume you've modified setTexture to accept an SDL_Texture*
+	
 	// end of character set ups
 
 	return true;
@@ -62,9 +62,8 @@ void Scene1::OnDestroy()
 
 void Scene1::Update(const float deltaTime) {
 	// Calculate and apply any steering for npc's
-	for (int i = 0; i < blinky.size(); i++) {
-		blinky[i]->Update(deltaTime); 
-	}
+	
+		blinky->Update(deltaTime); 
 
 	ai->Update(deltaTime);
 	// Update player
@@ -79,9 +78,9 @@ void Scene1::Render() {
 	SDL_RenderClear(renderer);
 
 	// render any npc's
-	for (int i = 0; i < blinky.size(); i++) {
-		blinky[i]->render(0.15f); 
-	}
+	
+		blinky->render(0.15f); 
+
 	// render the player
 	game->RenderPlayer(0.10f);
 	ai->Draw(renderer); 

@@ -216,7 +216,7 @@ void Character::steerToSeekPlayer(SteeringOutput* steering)
 
 
 }
-
+	//ARRIVE__________________________________________________________________________________
 void Character::ArrivePlayer(SteeringOutput* steering)
 {
 	for (size_t i = 0; i < body.size(); i++) {
@@ -225,7 +225,7 @@ void Character::ArrivePlayer(SteeringOutput* steering)
 	}
 
 }
-
+//__________________________________________________________________________________________________
 void Character::HandleEvents(const SDL_Event& event)
 {
 	// handle events here, if needed
