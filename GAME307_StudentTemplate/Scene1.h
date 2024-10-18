@@ -19,7 +19,7 @@ private:
 	Matrix4     inverseProjection;
 	class KinematicBody* body; 
 	AI* ai;  
-	std::vector<Character*> blinky; 
+	Character* blinky; 
 
 public:
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
