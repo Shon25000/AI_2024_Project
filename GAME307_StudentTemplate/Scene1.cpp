@@ -5,8 +5,8 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_) {
 	window = sdlWindow_;
 	game = game_;
 	renderer = SDL_GetRenderer(window);
-	xAxis = 25.0f;
-	yAxis = 15.0f;
+	xAxis = 6.0f;
+	yAxis = 6.0f;
 	ai = new AI();
 	// create a NPC
 	/*blinky = nullptr;*/
@@ -45,10 +45,111 @@ bool Scene1::OnCreate() {
 			return false;
 		}
 		blinky->setTextureWith("Blinky.png");// Assume you've modified setTexture to accept an SDL_Texture*
+
+		//Pathfinding---------------------------------------------------
+		
+		createTiles();
+		
+		graph = new Graph();
+		if (!graph->OnCreate(sceneNodes)) {
+			// error message
+			return false;
+		}
+
+		calculateConnectionWeight();
+
+		std::vector<Node*> path = graph->findPath(sceneNodes[0], sceneNodes[4]);
+
+
 	
 	// end of character set ups
 
 	return true;
+}
+
+void Scene1::createTiles()
+{
+	tileWidth = 1.0f;
+	tileHeight = 1.0f;
+
+	// resize
+	int cols = ceil(xAxis - 0.5 * tileWidth / tileWidth);
+	int rows = ceil(yAxis - 0.5 * tileHeight / tileHeight);
+
+	tiles.resize(rows);
+	for (int i = 0; i < rows; i++)
+	{
+		tiles[i].resize(cols);
+
+	}
+
+	sceneNodes.resize(cols * rows);
+
+	Node* n;
+	int label = 0;
+	Tile* t;
+	int i, j;
+
+	i = 0;
+	j = 0;
+
+	for (float y = 0.5f * tileHeight; y < yAxis; y += tileHeight)
+	{
+		// do stuff as y increases
+		for (float x = 0.5f * tileWidth; x < xAxis; x += tileWidth)
+		{
+			// do stuff as x increases
+
+			//create tile
+			n = new Node(label);
+			sceneNodes[label] = n;
+			Vec3 tilepos = Vec3(x, y, 0.0f);
+			t = new Tile(n, tilepos, tileWidth, tileHeight, this);
+			tiles[i][j] = t;
+			j++;
+			label++;
+
+		}
+		j = 0;
+		i++;
+	}
+
+}
+
+void Scene1::calculateConnectionWeight()
+{
+	int rows = tiles.size();
+	int cols = tiles[0].size();
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+
+			Tile* fromTile = tiles[i][j];
+			Node* from = fromTile->getNode();
+
+			//left
+			if (j >= 1)
+			{
+				Node* to = tiles[i][j - 1]->getNode();
+				graph->addWeightedConnection(from, to, tileWidth);
+			}
+
+			//right
+
+			//above
+			if ((i + 1) < rows)
+			{
+				Node* to = tiles[i + 1][j]->getNode();
+				graph->addWeightedConnection(from, to, tileHeight);
+			}
+
+
+			//below
+		}
+	}
+
 }
 
 void Scene1::OnDestroy()
@@ -81,8 +182,17 @@ void Scene1::Render() {
 	
 		blinky->render(0.15f); 
 
+		//render tiles
+		for (int i = 0; i < tiles.size(); i++) {
+			for (int j = 0; j < tiles[i].size(); j++)
+			{
+				tiles[i][j]->Render();
+			}
+		}
+		SDL_RenderPresent(renderer);
+
 	// render the player
-	game->RenderPlayer(0.10f);
+	//game->RenderPlayer(0.10f);
 	ai->Draw(renderer); 
 	SDL_RenderPresent(renderer);
 }

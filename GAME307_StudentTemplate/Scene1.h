@@ -7,6 +7,9 @@
 #include "Character.h"
 #include"AI.h"
 #include "KinematicBody.h" 
+#include "Graph.h"
+#include "Node.h"
+#include "Tile.h"
 
 using namespace MATH;
 class Scene1 : public Scene {
@@ -20,6 +23,14 @@ private:
 	class KinematicBody* body; 
 	AI* ai;  
 	Character* blinky; 
+
+	class Graph* graph;
+	std::vector<Node*> sceneNodes;
+
+	float tileWidth, tileHeight;
+	std::vector < std::vector<Tile*> > tiles;
+	void createTiles();
+	void calculateConnectionWeight();
 
 public:
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
