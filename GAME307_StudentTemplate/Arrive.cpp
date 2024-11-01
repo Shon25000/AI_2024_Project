@@ -15,7 +15,7 @@ SteeringOutput* Arrive::getSteering()
 
     result->linear = target->getPos() - npc->getPos();
      
-    if (VMath::mag(result->linear) < npc->getRotation()) {  
+    if (VMath::mag(result->linear) < npc->getRadius()) {  
         
         return nullptr;
     }

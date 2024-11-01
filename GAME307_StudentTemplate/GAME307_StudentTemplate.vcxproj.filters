@@ -7,17 +7,39 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PlayerBody.cpp" />
     <ClCompile Include="Scene1.cpp" />
-    <ClCompile Include="Seek.cpp" />
     <ClCompile Include="Steering\KinematicBody.cpp" />
-    <ClCompile Include="Steering\SteeringOutput.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="AI.cpp">
       <Filter>AI.cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Flee.cpp" />
-    <ClCompile Include="SteeringBehaviour.cpp" />
-    <ClCompile Include="Arrive.cpp" />
+    <ClCompile Include="Arrive.cpp">
+      <Filter>AI.cpp\Steering.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Flee.cpp">
+      <Filter>AI.cpp\Steering.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringBehaviour.cpp">
+      <Filter>AI.cpp\Steering.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\SteeringOutput.cpp">
+      <Filter>AI.cpp\Steering.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Seek.cpp">
+      <Filter>AI.cpp\Steering.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Wander.cpp">
+      <Filter>AI.cpp\Steering.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Pathfinding.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Pathfinding.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Pathfinding.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -27,17 +49,39 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
-    <ClInclude Include="Seek.h" />
     <ClInclude Include="Steering\KinematicBody.h" />
-    <ClInclude Include="Steering\SteeringOutput.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="AI.h">
       <Filter>AI.h</Filter>
     </ClInclude>
-    <ClInclude Include="Flee.h" />
-    <ClInclude Include="SteeringBehaviour.h" />
-    <ClInclude Include="Arrive.h" />
+    <ClInclude Include="Arrive.h">
+      <Filter>AI.h\Steering.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Flee.h">
+      <Filter>AI.h\Steering.h</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringBehaviour.h">
+      <Filter>AI.h\Steering.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\SteeringOutput.h">
+      <Filter>AI.h\Steering.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Seek.h">
+      <Filter>AI.h\Steering.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Wander.h">
+      <Filter>AI.h\Steering.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Pathfinding.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Pathfinding.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Pathfinding.h</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GAME307_StudentTemplate.rc" />
@@ -48,6 +92,18 @@
     </Filter>
     <Filter Include="AI.cpp">
       <UniqueIdentifier>{26d02c77-b7b7-48b4-81f2-fb1e0ed089d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pathfinding.cpp">
+      <UniqueIdentifier>{02fb9583-55ff-4c18-b763-2e6f686e9495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pathfinding.h">
+      <UniqueIdentifier>{cff80e7b-c5e1-441f-90cf-e3657937ddee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI.h\Steering.h">
+      <UniqueIdentifier>{a85adef7-06e9-4c65-91b0-05d9e8b80714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI.cpp\Steering.cpp">
+      <UniqueIdentifier>{745f4379-af0e-48d2-8e82-82aa6d9dd247}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

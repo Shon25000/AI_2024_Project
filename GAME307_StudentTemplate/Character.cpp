@@ -198,7 +198,7 @@ void Character::steerToSeekPlayer(SteeringOutput* steering)
 		//____________________________________________________________________________________
 
 		 //SEEKING ____________________________________________________________________
-			/*SteeringBehaviour* fleeAlgorthim = new Seek(body[i], scene->game->getPlayer());
+		/*	SteeringBehaviour* fleeAlgorthim = new Seek(body[i], scene->game->getPlayer());
 		 if (VMath::distance(scene->game->getPlayer()->getPos(), body[i]->getPos()) > 5.0f) {
 
 			 *steering += *(fleeAlgorthim->getSteering());
