@@ -7,9 +7,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_) {
 	renderer = SDL_GetRenderer(window);
 	xAxis = 6.0f;
 	yAxis = 6.0f;
-	ai = new AI();
-	// create a NPC
-	/*blinky = nullptr;*/
+
 }
 
 Scene1::~Scene1() {}
@@ -29,7 +27,7 @@ bool Scene1::OnCreate() {
 
 	SDL_Surface* image;
 	SDL_Texture* texture;
-	ai->OnCreate();
+	//ai->OnCreate();
 	image = IMG_Load("pacman.png");
 	texture = SDL_CreateTextureFromSurface(renderer, image);
 	game->getPlayer()->setImage(image);
@@ -44,7 +42,7 @@ bool Scene1::OnCreate() {
 		if (!blinky->OnCreate(this)) {
 			return false;
 		}
-		blinky->setTextureWith("Blinky.png");// Assume you've modified setTexture to accept an SDL_Texture*
+		//blinky->setTextureWith("Blinky.png");// Assume you've modified setTexture to accept an SDL_Texture*
 
 		//Pathfinding---------------------------------------------------
 		
@@ -56,12 +54,26 @@ bool Scene1::OnCreate() {
 			return false;
 		}
 
-		calculateConnectionWeight();
+		calculateConnectionWeight();  
+		graph->addWeightedConnection(sceneNodes[18], sceneNodes[19], 4.1f); // this for path B . calculating the small numbers in order to reach the path 		 
+		graph->addWeightedConnection(sceneNodes[19], sceneNodes[20], 5.0f);	// this for path B . calculating the small numbers in order to reach the path
+		graph->addWeightedConnection(sceneNodes[20], sceneNodes[21], 7.5f);	// this for path B . calculating the small numbers in order to reach the path
+		graph->addWeightedConnection(sceneNodes[21], sceneNodes[22], 3.0f);	// this for path B . calculating the small numbers in order to reach the path	  
+		graph->addWeightedConnection(sceneNodes[22], sceneNodes[16], 2.5f); // this for path B . calculating the small numbers in order to reach the path
+		graph->addWeightedConnection(sceneNodes[16], sceneNodes[11], 2.5f); // this for path B . calculating the small numbers in order to reach the path
+																				
 
-		std::vector<Node*> path = graph->findPath(sceneNodes[0], sceneNodes[4]);
+
+		graph->addWeightedConnection(sceneNodes[18], sceneNodes[12], 2.1f); // this for path A . calculating the small numbers in order to reach the path 
+		graph->addWeightedConnection(sceneNodes[12], sceneNodes[13], 2.2f);	// this for path A . calculating the small numbers in order to reach the path 
+		graph->addWeightedConnection(sceneNodes[13], sceneNodes[14], 3.5f);	// this for path A . calculating the small numbers in order to reach the path 
+		graph->addWeightedConnection(sceneNodes[14], sceneNodes[15], 3.0f);	// this for path A . calculating the small numbers in order to reach the path 
+		graph->addWeightedConnection(sceneNodes[15], sceneNodes[16], 2.5f);	// this for path A . calculating the small numbers in order to reach the path 
+		graph->addWeightedConnection(sceneNodes[16], sceneNodes[11], 2.5f);	// this for path A . calculating the small numbers in order to reach the path 
 
 
-	
+	   std::vector<Node*> path = graph->findPath(sceneNodes[18], sceneNodes[11]); // the starting and end point is from 18 to 11 node.   
+		
 	// end of character set ups
 
 	return true;
@@ -137,7 +149,10 @@ void Scene1::calculateConnectionWeight()
 			}
 
 			//right
-
+			if (j + 1 >= cols) {  
+				Node* to = tiles[i][j - 1]->getNode();
+				graph->addWeightedConnection(from, to, tileWidth);
+			}
 			//above
 			if ((i + 1) < rows)
 			{
@@ -145,7 +160,11 @@ void Scene1::calculateConnectionWeight()
 				graph->addWeightedConnection(from, to, tileHeight);
 			}
 
+			if ((i + 1 ) < cols) {
+				Node* to = tiles[i + 1][j]->getNode(); 
 
+				graph->addWeightedConnection(from , to, tileWidth); 
+			}
 			//below
 		}
 	}
@@ -164,11 +183,11 @@ void Scene1::OnDestroy()
 void Scene1::Update(const float deltaTime) {
 	// Calculate and apply any steering for npc's
 	
-		blinky->Update(deltaTime); 
+		//blinky->Update(deltaTime); 
 
-	ai->Update(deltaTime);
+	//ai->Update(deltaTime);
 	// Update player
-	game->getPlayer()->Update(deltaTime);
+	//game->getPlayer()->Update(deltaTime);
 
 
 
@@ -180,7 +199,7 @@ void Scene1::Render() {
 
 	// render any npc's
 	
-		blinky->render(0.15f); 
+	//	blinky->render(0.15f); 
 
 		//render tiles
 		for (int i = 0; i < tiles.size(); i++) {
@@ -193,14 +212,14 @@ void Scene1::Render() {
 
 	// render the player
 	//game->RenderPlayer(0.10f);
-	ai->Draw(renderer); 
+//	ai->Draw(renderer); 
 	SDL_RenderPresent(renderer);
 }
 
 void Scene1::HandleEvents(const SDL_Event& event)
 {
 	// send events to npc's as needed
-	ai->HandelEvent(event);  
+	//ai->HandelEvent(event);  
 	// send events to player as needed
 	game->getPlayer()->HandleEvents(event);
 }

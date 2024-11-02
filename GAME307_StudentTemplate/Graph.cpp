@@ -95,6 +95,44 @@ std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode)
         std::map<int, float> cost_so_far;
         cost_so_far[start] = 0.0f;
 
+        while (!frontier.empty()) {                            // using the formula from the slides to calculate the pathfinding algorthim 
+            currentNode = frontier.top().node; 
+            frontier.pop();
+
+            if (currentNode->getLabel() == goal) {
+                std::cerr << "Goal reached!\n";
+                break;
+            }
+            
+            for (Node* neighbor : neighbours(currentNode)) { 
+                new_const = cost_so_far[currentNode->getLabel()] + cost[currentNode->getLabel()][neighbor->getLabel()];
+                 
+                if (cost_so_far.find(neighbor->getLabel()) == cost_so_far.end() || new_const < cost_so_far[neighbor->getLabel()]) { 
+                    cost_so_far[neighbor->getLabel()] = new_const;
+                    priority = new_const; 
+                    frontier.push(NodeAndPariority{ neighbor, priority});
+                    came_from[neighbor->getLabel()] = currentNode->getLabel(); 
+                }
+            }
+        }
+
+     
+        int current = goal;  // printing out path if it reachs or not 
+        while (current != start) {
+            if (came_from[current] == -1) {
+                std::cerr << "No path found!\n";
+                return {};  
+            }
+            result.push_back(getNode(current));
+            current = came_from[current];
+          
+        }
+        result.push_back(startNode);  
+         std::reverse(result.begin(), result.end());
+
+        std::cerr << "Path found with " << result.size() << " nodes.\n";
+        std::cerr << result.back(); 
+        
         //loop through the frontier
         {
             //get top node, save it in current node
@@ -111,6 +149,6 @@ std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode)
             }
 
         }
-
+     
     return result;
 }

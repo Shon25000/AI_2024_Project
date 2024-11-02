@@ -1,5 +1,5 @@
-#ifndef SCENE1_H
-#define SCENE1_H
+#ifndef Scene2_H
+#define Scene2_H
 
 #include <MMath.h>
 #include <VMath.h>
@@ -7,34 +7,21 @@
 #include "Character.h"
 #include"AI.h"
 #include "KinematicBody.h" 
-#include "Graph.h"
-#include "Node.h"
-#include "Tile.h"
 
 using namespace MATH;
-class Scene1 : public Scene {
+class Scene2 : public Scene {
 private:
 	SDL_Window* window;
-	float xAxis ;
-	float yAxis ;
+	float xAxis = 25.0f;
+	float yAxis = 15.0f;
 	SDL_Renderer* renderer;
 	Matrix4 projectionMatrix;
 	Matrix4     inverseProjection;
-	class KinematicBody* body; 
 	AI* ai;  
-	Character* blinky; 
-
-	class Graph* graph;
-	std::vector<Node*> sceneNodes;
-
-	float tileWidth, tileHeight;
-	std::vector < std::vector<Tile*> > tiles;
-	void createTiles();
-	void calculateConnectionWeight();
 
 public:
-	Scene1(SDL_Window* sdlWindow, GameManager* game_);
-	~Scene1();
+	Scene2(SDL_Window* sdlWindow, GameManager* game_);
+	~Scene2();
 	bool OnCreate();
 	void OnDestroy();
 	void Update(const float time);
