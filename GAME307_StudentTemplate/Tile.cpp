@@ -30,11 +30,18 @@ void Tile::Render()
 		static_cast<int>(bottomRightScreen.x - topLeftScreen.x),
 		static_cast<int>(bottomRightScreen.y - topLeftScreen.y)
 	};
-	setRGBA(17, 138, 178, 225);
-		SDL_SetRenderDrawColor(renderer, r, g, b, a);
-		SDL_RenderFillRect(renderer, &rect);
+	    
+	
+	    setRGBA(17, 138, 178, 225);
+        SDL_SetRenderDrawColor(renderer, r, g, b, a); 
+		SDL_RenderFillRect(renderer, &rect); 
+		if (color_ ) {  
+			setRGBA(17, 0, 178, 225); 
+			SDL_SetRenderDrawColor(renderer, r, g, b, a); 
+			SDL_RenderFillRect(renderer, &rect); 
+		}
 
-	setRGBA(225, 225, 225, 225);
+	setRGBA(225, 0, 225, 225);
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 	SDL_RenderDrawRect(renderer, &rect);
 }

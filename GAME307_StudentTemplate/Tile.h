@@ -13,19 +13,26 @@ private:
 	Node* node;
 	Scene* scene;
 
+	
+public:
 	void setRGBA(Uint8 r_, Uint8 g_, Uint8 b_, Uint8 a_)
 	{
-		r = r_;
+		r = r_; 
 		g = g_;
 		b = b_;
 		a = a_;
 	}
-public:
+	bool setColorsNodes(Uint8 r_, Uint8 g_, Uint8 b_, Uint8 a_) {
+		r = r_; 
+		g = g_; 
+		b = b_; 
+		a = a_; 
+	}
 	Tile(Node* node_, Vec3 pos_, float width_, float height_, Scene* scene_);
 		virtual ~Tile() {}
 		void Render();
 		Node* getNode() const { return node; }
-
+		bool color_ = false;  
 };
 
 #endif

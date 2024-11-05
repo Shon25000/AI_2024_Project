@@ -55,27 +55,27 @@ bool Scene1::OnCreate() {
 		}
 
 		calculateConnectionWeight();  
-		graph->addWeightedConnection(sceneNodes[18], sceneNodes[19], 4.1f); // this for path B . calculating the small numbers in order to reach the path 		 
-		graph->addWeightedConnection(sceneNodes[19], sceneNodes[20], 5.0f);	// this for path B . calculating the small numbers in order to reach the path
-		graph->addWeightedConnection(sceneNodes[20], sceneNodes[21], 7.5f);	// this for path B . calculating the small numbers in order to reach the path
-		graph->addWeightedConnection(sceneNodes[21], sceneNodes[22], 3.0f);	// this for path B . calculating the small numbers in order to reach the path	  
-		graph->addWeightedConnection(sceneNodes[22], sceneNodes[16], 2.5f); // this for path B . calculating the small numbers in order to reach the path
-		graph->addWeightedConnection(sceneNodes[16], sceneNodes[11], 2.5f); // this for path B . calculating the small numbers in order to reach the path
-																				
+		//graph->addWeightedConnection(sceneNodes[18], sceneNodes[19], 4.1f); // this for path B . calculating the small numbers in order to reach the path 		 
+		//graph->addWeightedConnection(sceneNodes[19], sceneNodes[20], 5.0f);	// this for path B . calculating the small numbers in order to reach the path
+		//graph->addWeightedConnection(sceneNodes[20], sceneNodes[21], 7.5f);	// this for path B . calculating the small numbers in order to reach the path
+		//graph->addWeightedConnection(sceneNodes[21], sceneNodes[22], 3.0f);	// this for path B . calculating the small numbers in order to reach the path	  
+		//graph->addWeightedConnection(sceneNodes[22], sceneNodes[16], 2.5f); // this for path B . calculating the small numbers in order to reach the path
+		//graph->addWeightedConnection(sceneNodes[16], sceneNodes[11], 2.5f); // this for path B . calculating the small numbers in order to reach the path
+		//																		
 
 
-		graph->addWeightedConnection(sceneNodes[18], sceneNodes[12], 2.1f); // this for path A . calculating the small numbers in order to reach the path 
-		graph->addWeightedConnection(sceneNodes[12], sceneNodes[13], 2.2f);	// this for path A . calculating the small numbers in order to reach the path 
-		graph->addWeightedConnection(sceneNodes[13], sceneNodes[14], 3.5f);	// this for path A . calculating the small numbers in order to reach the path 
-		graph->addWeightedConnection(sceneNodes[14], sceneNodes[15], 3.0f);	// this for path A . calculating the small numbers in order to reach the path 
-		graph->addWeightedConnection(sceneNodes[15], sceneNodes[16], 2.5f);	// this for path A . calculating the small numbers in order to reach the path 
-		graph->addWeightedConnection(sceneNodes[16], sceneNodes[11], 2.5f);	// this for path A . calculating the small numbers in order to reach the path 
+		//graph->addWeightedConnection(sceneNodes[18], sceneNodes[12], 2.1f); // this for path A . calculating the small numbers in order to reach the path 
+		//graph->addWeightedConnection(sceneNodes[12], sceneNodes[13], 2.2f);	// this for path A . calculating the small numbers in order to reach the path 
+		//graph->addWeightedConnection(sceneNodes[13], sceneNodes[14], 3.5f);	// this for path A . calculating the small numbers in order to reach the path 
+		//graph->addWeightedConnection(sceneNodes[14], sceneNodes[15], 3.0f);	// this for path A . calculating the small numbers in order to reach the path 
+		//graph->addWeightedConnection(sceneNodes[15], sceneNodes[16], 2.5f);	// this for path A . calculating the small numbers in order to reach the path 
+		//graph->addWeightedConnection(sceneNodes[16], sceneNodes[11], 2.5f);	// this for path A . calculating the small numbers in order to reach the path 
 
-
-	   std::vector<Node*> path = graph->findPath(sceneNodes[18], sceneNodes[11]); // the starting and end point is from 18 to 11 node.   
 		
+			std::vector<Node*> path = graph->findPath(sceneNodes[18], sceneNodes[11]); // the starting and end point is from 18 to 11 node.   
+	   
 	// end of character set ups
-
+	
 	return true;
 }
 
@@ -118,14 +118,18 @@ void Scene1::createTiles()
 			Vec3 tilepos = Vec3(x, y, 0.0f);
 			t = new Tile(n, tilepos, tileWidth, tileHeight, this);
 			tiles[i][j] = t;
+			if (sceneNodes[label]->getLabel() == sceneNodes[label]->getLabel()) { 
+
+				t->color_ = true;
+			} 
 			j++;
 			label++;
-
+			
 		}
 		j = 0;
 		i++;
 	}
-
+	
 }
 
 void Scene1::calculateConnectionWeight()
@@ -149,8 +153,8 @@ void Scene1::calculateConnectionWeight()
 			}
 
 			//right
-			if (j + 1 >= cols) {  
-				Node* to = tiles[i][j - 1]->getNode();
+			if ((j + 1) < cols) {  
+				Node* to = tiles[i][j + 1]->getNode();
 				graph->addWeightedConnection(from, to, tileWidth);
 			}
 			//above
@@ -160,10 +164,10 @@ void Scene1::calculateConnectionWeight()
 				graph->addWeightedConnection(from, to, tileHeight);
 			}
 
-			if ((i + 1 ) < cols) {
-				Node* to = tiles[i + 1][j]->getNode(); 
+			if ((i - 1 ) >= 0) {
+				Node* to = tiles[i - 1][j]->getNode(); 
 
-				graph->addWeightedConnection(from , to, tileWidth); 
+				graph->addWeightedConnection(from , to, tileHeight); 
 			}
 			//below
 		}
@@ -206,6 +210,7 @@ void Scene1::Render() {
 			for (int j = 0; j < tiles[i].size(); j++)
 			{
 				tiles[i][j]->Render();
+				
 			}
 		}
 		SDL_RenderPresent(renderer);

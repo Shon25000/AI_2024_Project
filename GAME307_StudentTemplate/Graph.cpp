@@ -108,6 +108,7 @@ std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode)
                 new_const = cost_so_far[currentNode->getLabel()] + cost[currentNode->getLabel()][neighbor->getLabel()];
                  
                 if (cost_so_far.find(neighbor->getLabel()) == cost_so_far.end() || new_const < cost_so_far[neighbor->getLabel()]) { 
+                   
                     cost_so_far[neighbor->getLabel()] = new_const;
                     priority = new_const; 
                     frontier.push(NodeAndPariority{ neighbor, priority});
@@ -117,7 +118,7 @@ std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode)
         }
 
      
-        int current = goal;  // printing out path if it reachs or not 
+        int current = goal;  // printing out path if it reachs or not  
         while (current != start) {
             if (came_from[current] == -1) {
                 std::cerr << "No path found!\n";
@@ -125,14 +126,20 @@ std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode)
             }
             result.push_back(getNode(current));
             current = came_from[current];
-          
+
+
+            auto it = result.back()->getLabel(); // printing out the label of nodes   
+            
+            std::cout << it << " nodes " << " path " << result.size() << std::endl;   
+
+              
+
         }
         result.push_back(startNode);  
          std::reverse(result.begin(), result.end());
-
-        std::cerr << "Path found with " << result.size() << " nodes.\n";
-        std::cerr << result.back(); 
         
+        std::cerr << "Path found with " << result.size() << " nodes.\n";
+       
         //loop through the frontier
         {
             //get top node, save it in current node
