@@ -76,10 +76,9 @@ bool Scene1::OnCreate() {
 			
 			
 			for (Node* node : path) {// passing the path into node and set the tile->color to true. 
-				int nodeLabel = node->getLabel();
 				for (int i = 0; i < tiles.size(); i++) {
 					for (int j = 0; j < tiles[i].size(); j++) {
-						if (tiles[i][j]->getNode()->getLabel() == nodeLabel) {
+						if (tiles[i][j]->getNode()->getLabel() == node->getLabel()) { 
 							tiles[i][j]->color_ = true; 
 						}
 					}
