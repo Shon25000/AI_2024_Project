@@ -72,7 +72,7 @@ struct NodeAndPariority
     }
 };
 
-std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode)
+std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode) 
 {
     std::vector<Node*> result;
 
@@ -108,7 +108,7 @@ std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode)
                 new_const = cost_so_far[currentNode->getLabel()] + cost[currentNode->getLabel()][neighbor->getLabel()];
                  
                 if (cost_so_far.find(neighbor->getLabel()) == cost_so_far.end() || new_const < cost_so_far[neighbor->getLabel()]) { 
-                   
+                  
                     cost_so_far[neighbor->getLabel()] = new_const;
                     priority = new_const; 
                     frontier.push(NodeAndPariority{ neighbor, priority});

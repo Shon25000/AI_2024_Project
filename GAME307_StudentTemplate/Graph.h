@@ -24,6 +24,7 @@ public:
 	void addWeightedConnection(Node* fromNode, Node* toNode, float weight);
 	std::vector <Node*> neighbours(Node* fromNode);
 	std::vector <Node*> findPath(Node* startNode, Node* goalNode);
+	
 };
 
 

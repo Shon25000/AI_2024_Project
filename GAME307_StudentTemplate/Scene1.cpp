@@ -73,7 +73,19 @@ bool Scene1::OnCreate() {
 
 		
 			std::vector<Node*> path = graph->findPath(sceneNodes[18], sceneNodes[11]); // the starting and end point is from 18 to 11 node.   
-	   
+			
+			
+			for (Node* node : path) {// passing the path into node and set the tile->color to true. 
+				int nodeLabel = node->getLabel();
+				for (int i = 0; i < tiles.size(); i++) {
+					for (int j = 0; j < tiles[i].size(); j++) {
+						if (tiles[i][j]->getNode()->getLabel() == nodeLabel) {
+							tiles[i][j]->color_ = true; 
+						}
+					}
+				}
+			}
+				
 	// end of character set ups
 	
 	return true;
@@ -118,10 +130,11 @@ void Scene1::createTiles()
 			Vec3 tilepos = Vec3(x, y, 0.0f);
 			t = new Tile(n, tilepos, tileWidth, tileHeight, this);
 			tiles[i][j] = t;
-			if (sceneNodes[label]->getLabel() == sceneNodes[label]->getLabel()) { 
+			Node* node = new Node(label); 
+			/*if (n->getLabel() == 18 || n->getLabel() == 11 ) { 
+				t->color_ = true; 
+			} */
 
-				t->color_ = true;
-			} 
 			j++;
 			label++;
 			
