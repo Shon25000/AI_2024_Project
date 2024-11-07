@@ -57,55 +57,72 @@ bool Scene1::OnCreate() {
 		calculateConnectionWeight();  
 			 
 		//WALLS---------------------------------------------------------------------------------------------------------
-		std::vector<Node*> wall;
 		
-		//Tile 33 wall
-		graph->addWeightedConnection(sceneNodes[32], sceneNodes[33], 100.0f);
-		graph->addWeightedConnection(sceneNodes[34], sceneNodes[33], 100.0f);
-		graph->addWeightedConnection(sceneNodes[27], sceneNodes[33], 100.0f);
-	
-		//Tile 10 wall
-		graph->addWeightedConnection(sceneNodes[9], sceneNodes[10], 100.0f);
-		graph->addWeightedConnection(sceneNodes[16], sceneNodes[10], 100.0f);
-		graph->addWeightedConnection(sceneNodes[11], sceneNodes[10], 100.0f);
-		graph->addWeightedConnection(sceneNodes[4], sceneNodes[10], 100.0f);
+		for (int i = 0; i < tiles.size(); i++) {
+			for (int j = 0; j < tiles[i].size(); j++) {
 
-		//Tile 16 wall
-		graph->addWeightedConnection(sceneNodes[15], sceneNodes[16], 100.0f);
-		graph->addWeightedConnection(sceneNodes[22], sceneNodes[16], 100.0f);
-		graph->addWeightedConnection(sceneNodes[17], sceneNodes[16], 100.0f);
-		graph->addWeightedConnection(sceneNodes[10], sceneNodes[16], 100.0f);
+				//Tile 33 wall
+				graph->addWeightedConnection(sceneNodes[32], sceneNodes[33], 100.0f);
+				graph->addWeightedConnection(sceneNodes[34], sceneNodes[33], 100.0f);
+				graph->addWeightedConnection(sceneNodes[27], sceneNodes[33], 100.0f);
 
-		//Tile 23 wall
-		graph->addWeightedConnection(sceneNodes[22], sceneNodes[23], 100.0f);	
-		graph->addWeightedConnection(sceneNodes[29], sceneNodes[23], 100.0f);	
-		graph->addWeightedConnection(sceneNodes[17], sceneNodes[23], 100.0f);		  
-		
-		//Tile 28 wall
-		graph->addWeightedConnection(sceneNodes[27], sceneNodes[28], 100.0f);
-		graph->addWeightedConnection(sceneNodes[34], sceneNodes[28], 100.0f);
-		graph->addWeightedConnection(sceneNodes[29], sceneNodes[28], 100.0f);
-		graph->addWeightedConnection(sceneNodes[22], sceneNodes[28], 100.0f); 
-													
-		//Tile 19 wall
-		graph->addWeightedConnection(sceneNodes[18], sceneNodes[19], 100.0f);  
-		graph->addWeightedConnection(sceneNodes[25], sceneNodes[19], 100.0f);	 
-		graph->addWeightedConnection(sceneNodes[13], sceneNodes[19], 100.0f);	
-		graph->addWeightedConnection(sceneNodes[20], sceneNodes[19], 100.0f);	 
-		
-		//Tile 12 wall
-		graph->addWeightedConnection(sceneNodes[18], sceneNodes[12], 100.0f);	 
-		graph->addWeightedConnection(sceneNodes[6], sceneNodes[12], 100.0f);	
-		graph->addWeightedConnection(sceneNodes[13], sceneNodes[12], 100.0f);
-		
-		for (Node* node : wall) {
-			for (int i = 0; i < tiles.size(); i++) {
-				for (int j = 0; j < tiles[i].size(); j++) {
+				//Tile 10 wall
+				graph->addWeightedConnection(sceneNodes[9], sceneNodes[10], 100.0f);
+				graph->addWeightedConnection(sceneNodes[16], sceneNodes[10], 100.0f);
+				graph->addWeightedConnection(sceneNodes[11], sceneNodes[10], 100.0f);
+				graph->addWeightedConnection(sceneNodes[4], sceneNodes[10], 100.0f);
 
-					if (tiles[i][j]->getNode()->getLabel() == node->getLabel()) {
-						tiles[i][j]->wall = true;
-					}
+				//Tile 16 wall
+				graph->addWeightedConnection(sceneNodes[15], sceneNodes[16], 100.0f);
+				graph->addWeightedConnection(sceneNodes[22], sceneNodes[16], 100.0f);
+				graph->addWeightedConnection(sceneNodes[17], sceneNodes[16], 100.0f);
+				graph->addWeightedConnection(sceneNodes[10], sceneNodes[16], 100.0f);
+
+				//Tile 23 wall
+				graph->addWeightedConnection(sceneNodes[22], sceneNodes[23], 100.0f);
+				graph->addWeightedConnection(sceneNodes[29], sceneNodes[23], 100.0f);
+				graph->addWeightedConnection(sceneNodes[17], sceneNodes[23], 100.0f);
+
+				//Tile 28 wall
+				graph->addWeightedConnection(sceneNodes[27], sceneNodes[28], 100.0f);
+				graph->addWeightedConnection(sceneNodes[34], sceneNodes[28], 100.0f);
+				graph->addWeightedConnection(sceneNodes[29], sceneNodes[28], 100.0f);
+				graph->addWeightedConnection(sceneNodes[22], sceneNodes[28], 100.0f);
+
+				//Tile 19 wall
+				graph->addWeightedConnection(sceneNodes[18], sceneNodes[19], 100.0f);
+				graph->addWeightedConnection(sceneNodes[25], sceneNodes[19], 100.0f);
+				graph->addWeightedConnection(sceneNodes[13], sceneNodes[19], 100.0f);
+				graph->addWeightedConnection(sceneNodes[20], sceneNodes[19], 100.0f);
+
+				//Tile 12 wall
+				graph->addWeightedConnection(sceneNodes[18], sceneNodes[12], 100.0f);
+				graph->addWeightedConnection(sceneNodes[6], sceneNodes[12], 100.0f);
+				graph->addWeightedConnection(sceneNodes[13], sceneNodes[12], 100.0f);
+
+
+				if (tiles[i][j]->getNode()->getLabel() == 12) {
+					tiles[i][j]->wall = true;
 				}
+				if (tiles[i][j]->getNode()->getLabel() == 19) {
+					tiles[i][j]->wall = true;
+				}
+				if (tiles[i][j]->getNode()->getLabel() == 28) {
+					tiles[i][j]->wall = true;
+				}
+				if (tiles[i][j]->getNode()->getLabel() == 23) {
+					tiles[i][j]->wall = true;
+				}
+				if (tiles[i][j]->getNode()->getLabel() == 16) {
+					tiles[i][j]->wall = true;
+				}
+				if (tiles[i][j]->getNode()->getLabel() == 10) {
+					tiles[i][j]->wall = true;
+				}
+				if (tiles[i][j]->getNode()->getLabel() == 33) {
+					tiles[i][j]->wall = true;
+				}
+
 			}
 		}
 		//WALLS---------------------------------------------------------------------------------------------------------

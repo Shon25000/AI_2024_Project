@@ -46,6 +46,7 @@ int Graph::numNodes()
 void Graph::addWeightedConnection(Node* fromNode, Node* toNode, float weight)
 {
     cost[fromNode->getLabel()][toNode->getLabel()] = weight;
+    
 }
 
 std::vector<Node*> Graph::neighbours(Node* fromNode)
