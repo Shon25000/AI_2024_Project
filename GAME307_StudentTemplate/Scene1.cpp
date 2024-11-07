@@ -55,21 +55,61 @@ bool Scene1::OnCreate() {
 		}
 
 		calculateConnectionWeight();  
-		//graph->addWeightedConnection(sceneNodes[18], sceneNodes[19], 4.1f); // this for path B . calculating the small numbers in order to reach the path 		 
-		//graph->addWeightedConnection(sceneNodes[19], sceneNodes[20], 5.0f);	// this for path B . calculating the small numbers in order to reach the path
-		//graph->addWeightedConnection(sceneNodes[20], sceneNodes[21], 7.5f);	// this for path B . calculating the small numbers in order to reach the path
-		//graph->addWeightedConnection(sceneNodes[21], sceneNodes[22], 3.0f);	// this for path B . calculating the small numbers in order to reach the path	  
-		//graph->addWeightedConnection(sceneNodes[22], sceneNodes[16], 2.5f); // this for path B . calculating the small numbers in order to reach the path
-		//graph->addWeightedConnection(sceneNodes[16], sceneNodes[11], 2.5f); // this for path B . calculating the small numbers in order to reach the path
-		//																		
+			 
+		//WALLS---------------------------------------------------------------------------------------------------------
+		std::vector<Node*> wall;
+		
+		//Tile 33 wall
+		graph->addWeightedConnection(sceneNodes[32], sceneNodes[33], 100.0f);
+		graph->addWeightedConnection(sceneNodes[34], sceneNodes[33], 100.0f);
+		graph->addWeightedConnection(sceneNodes[27], sceneNodes[33], 100.0f);
+	
+		//Tile 10 wall
+		graph->addWeightedConnection(sceneNodes[9], sceneNodes[10], 100.0f);
+		graph->addWeightedConnection(sceneNodes[16], sceneNodes[10], 100.0f);
+		graph->addWeightedConnection(sceneNodes[11], sceneNodes[10], 100.0f);
+		graph->addWeightedConnection(sceneNodes[4], sceneNodes[10], 100.0f);
 
+		//Tile 16 wall
+		graph->addWeightedConnection(sceneNodes[15], sceneNodes[16], 100.0f);
+		graph->addWeightedConnection(sceneNodes[22], sceneNodes[16], 100.0f);
+		graph->addWeightedConnection(sceneNodes[17], sceneNodes[16], 100.0f);
+		graph->addWeightedConnection(sceneNodes[10], sceneNodes[16], 100.0f);
 
-		//graph->addWeightedConnection(sceneNodes[18], sceneNodes[12], 2.1f); // this for path A . calculating the small numbers in order to reach the path 
-		//graph->addWeightedConnection(sceneNodes[12], sceneNodes[13], 2.2f);	// this for path A . calculating the small numbers in order to reach the path 
-		//graph->addWeightedConnection(sceneNodes[13], sceneNodes[14], 3.5f);	// this for path A . calculating the small numbers in order to reach the path 
-		//graph->addWeightedConnection(sceneNodes[14], sceneNodes[15], 3.0f);	// this for path A . calculating the small numbers in order to reach the path 
-		//graph->addWeightedConnection(sceneNodes[15], sceneNodes[16], 2.5f);	// this for path A . calculating the small numbers in order to reach the path 
-		//graph->addWeightedConnection(sceneNodes[16], sceneNodes[11], 2.5f);	// this for path A . calculating the small numbers in order to reach the path 
+		//Tile 23 wall
+		graph->addWeightedConnection(sceneNodes[22], sceneNodes[23], 100.0f);	
+		graph->addWeightedConnection(sceneNodes[29], sceneNodes[23], 100.0f);	
+		graph->addWeightedConnection(sceneNodes[17], sceneNodes[23], 100.0f);		  
+		
+		//Tile 28 wall
+		graph->addWeightedConnection(sceneNodes[27], sceneNodes[28], 100.0f);
+		graph->addWeightedConnection(sceneNodes[34], sceneNodes[28], 100.0f);
+		graph->addWeightedConnection(sceneNodes[29], sceneNodes[28], 100.0f);
+		graph->addWeightedConnection(sceneNodes[22], sceneNodes[28], 100.0f); 
+													
+		//Tile 19 wall
+		graph->addWeightedConnection(sceneNodes[18], sceneNodes[19], 100.0f);  
+		graph->addWeightedConnection(sceneNodes[25], sceneNodes[19], 100.0f);	 
+		graph->addWeightedConnection(sceneNodes[13], sceneNodes[19], 100.0f);	
+		graph->addWeightedConnection(sceneNodes[20], sceneNodes[19], 100.0f);	 
+		
+		//Tile 12 wall
+		graph->addWeightedConnection(sceneNodes[18], sceneNodes[12], 100.0f);	 
+		graph->addWeightedConnection(sceneNodes[6], sceneNodes[12], 100.0f);	
+		graph->addWeightedConnection(sceneNodes[13], sceneNodes[12], 100.0f);
+		
+		for (Node* node : wall) {
+			for (int i = 0; i < tiles.size(); i++) {
+				for (int j = 0; j < tiles[i].size(); j++) {
+
+					if (tiles[i][j]->getNode()->getLabel() == node->getLabel()) {
+						tiles[i][j]->wall = true;
+					}
+				}
+			}
+		}
+		//WALLS---------------------------------------------------------------------------------------------------------
+
 
 		
 			std::vector<Node*> path = graph->findPath(sceneNodes[18], sceneNodes[11]); // the starting and end point is from 18 to 11 node.   

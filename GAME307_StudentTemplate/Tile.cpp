@@ -41,6 +41,12 @@ void Tile::Render()
 			SDL_RenderFillRect(renderer, &rect); 
 		}
 
+		if (wall) {
+			setRGBA(239, 239, 240, 225);
+			SDL_SetRenderDrawColor(renderer, r, g, b, a);
+			SDL_RenderFillRect(renderer, &rect);
+		}
+
 	setRGBA(225, 0, 225, 225);
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 	SDL_RenderDrawRect(renderer, &rect);

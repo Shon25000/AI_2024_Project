@@ -32,7 +32,8 @@ public:
 		virtual ~Tile() {}
 		void Render();
 		Node* getNode() const { return node; }
-		bool color_ = false;  
+		bool color_ = false; 
+		bool wall = false;
 };
 
 #endif
